@@ -22,4 +22,5 @@ public interface ProductModelRepository extends JpaRepository<ProductModel, Long
     @Query("SELECT p.productName FROM ProductModel p WHERE p.subcategory = :subcategory")
     List<String> findProductNamesBySubcategory(@Param("subcategory") Optional<Subcategory> subcategory);
 
+
 }

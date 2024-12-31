@@ -2,6 +2,8 @@ package ecommerce.electronics.EcomElectronics.DataBase;
 
 import jakarta.persistence.*;
 
+import java.util.Optional;
+
 @Entity
 @Table(name = "subcategory")
 public class Subcategory {

@@ -4,6 +4,7 @@ import ecommerce.electronics.EcomElectronics.DataBase.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +22,15 @@ public class DatabaseService {
 
     @Autowired
     private SubcategoryRepository subcategoryRepository;
+
+    @Autowired
+    private Subcategory subcategory;
+
+    @Autowired
+    private ProductModel productModel;
+
+//    @Autowired
+//    private Category category;
 
     public List<Brand> FetchAllBrands()
     {
@@ -73,6 +83,64 @@ public class DatabaseService {
 
     public List<String> FindProductNamesBySubcategory(Optional<Subcategory> subcategory)
     {
+
         return productModelRepository.findProductNamesBySubcategory(subcategory);
     }
+
+    public void AddProduct(String productName, Long brandID, Long categoryID, Long subcategoryID, BigDecimal price, Integer stockQuantity)
+    {
+       // productModel.setProductId(productID);
+        productModel.setProductName(productName);
+        productModel.setPrice(price);
+        productModel.setStockQuantity(stockQuantity);
+        Optional<Brand> brand = FetchBrandByID(brandID);
+        if(brand.isPresent())
+        {
+            Brand brand1 = brand.get();
+            productModel.setBrand(brand1);
+        }
+
+        Optional<Category> category = FetchCategoryByID(categoryID);
+        if(category.isPresent())
+        {
+            Category category1 = category.get();
+            productModel.setCategory(category1);
+        }
+
+        Optional<Subcategory> subcategory = FetchSubCategoryByID(subcategoryID);
+        if(subcategory.isPresent())
+        {
+            Subcategory subcategory1 = subcategory.get();
+            productModel.setSubcategory(subcategory1);
+        }
+        productModelRepository.save(productModel);
+    }
+
+    public void AddBrand(Brand brand)
+    {
+
+        brandRepository.save(brand);
+    }
+
+    public void AddCategory(Category category)
+    {
+
+        categoryRepository.save(category);
+    }
+
+    public void AddSubcategory(String subCategoryName, Long categoryID)
+    {
+
+        subcategory.setSubcategoryName(subCategoryName);
+        //subcategory.setSubcategoryId(subCategotyID);
+        Optional<Category> category =  FetchCategoryByID(categoryID);
+        if(category.isPresent())
+        {
+            Category category1 = category.get();
+            subcategory.setCategory(category1);
+            subcategoryRepository.save(subcategory);
+        }
+
+    }
+
 }
