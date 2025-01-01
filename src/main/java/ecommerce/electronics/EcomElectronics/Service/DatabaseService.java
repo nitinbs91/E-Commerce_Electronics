@@ -87,7 +87,7 @@ public class DatabaseService {
         return productModelRepository.findProductNamesBySubcategory(subcategory);
     }
 
-    public void AddProduct(String productName, Long brandID, Long categoryID, Long subcategoryID, BigDecimal price, Integer stockQuantity)
+    public ProductModel AddProduct(String productName, Long brandID, Long categoryID, Long subcategoryID, BigDecimal price, Integer stockQuantity)
     {
        // productModel.setProductId(productID);
         productModel.setProductName(productName);
@@ -113,22 +113,23 @@ public class DatabaseService {
             Subcategory subcategory1 = subcategory.get();
             productModel.setSubcategory(subcategory1);
         }
-        productModelRepository.save(productModel);
+        ProductModel productModel1 = productModelRepository.save(productModel);
+        return productModel1;
     }
 
-    public void AddBrand(Brand brand)
+    public Brand AddBrand(Brand brand)
     {
 
-        brandRepository.save(brand);
+        return brandRepository.save(brand);
     }
 
-    public void AddCategory(Category category)
+    public Category AddCategory(Category category)
     {
 
-        categoryRepository.save(category);
+        return categoryRepository.save(category);
     }
 
-    public void AddSubcategory(String subCategoryName, Long categoryID)
+    public Subcategory AddSubcategory(String subCategoryName, Long categoryID)
     {
 
         subcategory.setSubcategoryName(subCategoryName);
@@ -138,9 +139,9 @@ public class DatabaseService {
         {
             Category category1 = category.get();
             subcategory.setCategory(category1);
-            subcategoryRepository.save(subcategory);
-        }
 
+        }
+        return subcategoryRepository.save(subcategory);
     }
 
 }

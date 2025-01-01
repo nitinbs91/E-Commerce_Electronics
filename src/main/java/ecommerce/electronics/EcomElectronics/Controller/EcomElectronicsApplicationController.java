@@ -11,6 +11,7 @@ import ecommerce.electronics.EcomElectronics.dto.AddCategory;
 import ecommerce.electronics.EcomElectronics.dto.AddProduct;
 import ecommerce.electronics.EcomElectronics.dto.AddSubcategory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -61,7 +62,7 @@ public class EcomElectronicsApplicationController {
     }
 
     @PostMapping("/AddProduct")
-    public void AddNewProduct(@RequestBody AddProduct request)
+    public ResponseEntity<ProductModel> AddNewProduct(@RequestBody AddProduct request)
     {
        //Integer productID = request.getProductId();
        String productName = request.getProductName();
@@ -70,30 +71,33 @@ public class EcomElectronicsApplicationController {
        Long subcategoryID = request.getSubcategory();
        BigDecimal price = request.getPrice();
        Integer stockQuantity = request.getStockQuantity();
-       databaseService.AddProduct(productName, brandID, categoryID, subcategoryID, price, stockQuantity);
-
+       ProductModel productModel= databaseService.AddProduct(productName, brandID, categoryID, subcategoryID, price, stockQuantity);
+       return ResponseEntity.ok().header("status", "Success").body(productModel);
     }
     @PostMapping("/AddBrand")
-    public void AddNewBrand(@RequestBody AddBrand request)
+    public ResponseEntity<Brand> AddNewBrand(@RequestBody AddBrand request)
     {
         Brand brand = dtoToEntityMapper.MapBrandDTOToEntity(request);
-        databaseService.AddBrand(brand);
+        Brand brand1 = databaseService.AddBrand(brand);
+        return ResponseEntity.ok().header("Status", "Success").body(brand1);
     }
     @PostMapping("/AddCategory")
-    public void AddNewCategory(@RequestBody AddCategory request)
+    public ResponseEntity<Category> AddNewCategory(@RequestBody AddCategory request)
     {
         Category category = dtoToEntityMapper.MapCategoryDTOToEntity(request);
-        databaseService.AddCategory(category);
+        Category category1 = databaseService.AddCategory(category);
+        return ResponseEntity.ok().header("Status", "Success").body(category1);
     }
 
     @PostMapping("/AddSubCategory")
-    public void AddNewSubCategory(@RequestBody AddSubcategory request)
+    public ResponseEntity<Subcategory> AddNewSubCategory(@RequestBody AddSubcategory request)
     {
-        System.out.println("+++++++++++++++++++++++++++++++++++++" + request);
+       // System.out.println("+++++++++++++++++++++++++++++++++++++" + request);
         String SubCategoryName = request.getSubCategoryName();
         //Long SubCategoryID = request.getSubCategoryID();
         Long CategoryID = request.getCategoryID();
-        System.out.println("*************************************************"+ CategoryID);
-        databaseService.AddSubcategory(SubCategoryName,CategoryID);
+        //System.out.println("*************************************************"+ CategoryID);
+        Subcategory subcategory = databaseService.AddSubcategory(SubCategoryName,CategoryID);
+        return ResponseEntity.ok().header("Status", "Success").body(subcategory);
     }
 }
