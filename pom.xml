@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ecommerce.electronics</groupId>
-    <artifactId>EcomElectronics</artifactId>
+    <artifactId>ProductManagement</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>EcomElectronics</name>
     <description>Demo springboot micro services with an E-commerce setup</description>
