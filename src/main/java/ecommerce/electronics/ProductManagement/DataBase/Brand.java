@@ -1,4 +1,4 @@
-package ecommerce.electronics.EcomElectronics.DataBase;
+package ecommerce.electronics.ProductManagement.DataBase;
 
 import jakarta.persistence.*;
 

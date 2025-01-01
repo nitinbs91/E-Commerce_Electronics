@@ -1,4 +1,4 @@
-package ecommerce.electronics.EcomElectronics.DataBase;
+package ecommerce.electronics.ProductManagement.DataBase;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;

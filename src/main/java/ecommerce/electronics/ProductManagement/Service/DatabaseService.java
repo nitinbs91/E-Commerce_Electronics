@@ -1,7 +1,7 @@
-package ecommerce.electronics.EcomElectronics.Service;
+package ecommerce.electronics.ProductManagement.Service;
 
-import ecommerce.electronics.EcomElectronics.DataBase.*;
-import ecommerce.electronics.EcomElectronics.Exception.DatabaseException;
+import ecommerce.electronics.ProductManagement.DataBase.*;
+import ecommerce.electronics.ProductManagement.Exception.DatabaseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;

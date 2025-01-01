@@ -1,7 +1,6 @@
-package ecommerce.electronics.EcomElectronics.DataBase;
+package ecommerce.electronics.ProductManagement.DataBase;
 
 import jakarta.persistence.*;
-import org.springframework.context.annotation.Bean;
 
 import java.math.BigDecimal;
 

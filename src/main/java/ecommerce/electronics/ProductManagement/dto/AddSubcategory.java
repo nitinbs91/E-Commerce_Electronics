@@ -1,6 +1,4 @@
-package ecommerce.electronics.EcomElectronics.dto;
-
-import ecommerce.electronics.EcomElectronics.DataBase.Category;
+package ecommerce.electronics.ProductManagement.dto;
 
 public class AddSubcategory {
 

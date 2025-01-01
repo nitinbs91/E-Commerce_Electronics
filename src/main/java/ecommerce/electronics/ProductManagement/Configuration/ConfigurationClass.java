@@ -1,7 +1,7 @@
-package ecommerce.electronics.EcomElectronics.Configuration;
+package ecommerce.electronics.ProductManagement.Configuration;
 
-import ecommerce.electronics.EcomElectronics.DataBase.ProductModel;
-import ecommerce.electronics.EcomElectronics.DataBase.Subcategory;
+import ecommerce.electronics.ProductManagement.DataBase.ProductModel;
+import ecommerce.electronics.ProductManagement.DataBase.Subcategory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

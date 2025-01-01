@@ -1,15 +1,15 @@
-package ecommerce.electronics.EcomElectronics.Controller;
+package ecommerce.electronics.ProductManagement.Controller;
 
-import ecommerce.electronics.EcomElectronics.Business.DTOToEntityMapper;
-import ecommerce.electronics.EcomElectronics.DataBase.Brand;
-import ecommerce.electronics.EcomElectronics.DataBase.Category;
-import ecommerce.electronics.EcomElectronics.DataBase.ProductModel;
-import ecommerce.electronics.EcomElectronics.DataBase.Subcategory;
-import ecommerce.electronics.EcomElectronics.Service.DatabaseService;
-import ecommerce.electronics.EcomElectronics.dto.AddBrand;
-import ecommerce.electronics.EcomElectronics.dto.AddCategory;
-import ecommerce.electronics.EcomElectronics.dto.AddProduct;
-import ecommerce.electronics.EcomElectronics.dto.AddSubcategory;
+import ecommerce.electronics.ProductManagement.Business.DTOToEntityMapper;
+import ecommerce.electronics.ProductManagement.DataBase.Brand;
+import ecommerce.electronics.ProductManagement.DataBase.Category;
+import ecommerce.electronics.ProductManagement.DataBase.ProductModel;
+import ecommerce.electronics.ProductManagement.DataBase.Subcategory;
+import ecommerce.electronics.ProductManagement.Service.DatabaseService;
+import ecommerce.electronics.ProductManagement.dto.AddBrand;
+import ecommerce.electronics.ProductManagement.dto.AddCategory;
+import ecommerce.electronics.ProductManagement.dto.AddProduct;
+import ecommerce.electronics.ProductManagement.dto.AddSubcategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

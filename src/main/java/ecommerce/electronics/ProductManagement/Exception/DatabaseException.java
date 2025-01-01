@@ -1,4 +1,4 @@
-package ecommerce.electronics.EcomElectronics.Exception;
+package ecommerce.electronics.ProductManagement.Exception;
 
 public class DatabaseException extends  RuntimeException{
 

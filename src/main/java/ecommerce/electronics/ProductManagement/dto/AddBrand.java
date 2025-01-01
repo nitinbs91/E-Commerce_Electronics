@@ -1,4 +1,4 @@
-package ecommerce.electronics.EcomElectronics.dto;
+package ecommerce.electronics.ProductManagement.dto;
 
 public class AddBrand {
 

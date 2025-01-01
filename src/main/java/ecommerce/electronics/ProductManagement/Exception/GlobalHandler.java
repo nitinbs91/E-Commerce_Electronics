@@ -1,4 +1,4 @@
-package ecommerce.electronics.EcomElectronics.Exception;
+package ecommerce.electronics.ProductManagement.Exception;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
