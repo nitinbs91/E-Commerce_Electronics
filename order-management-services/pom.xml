@@ -12,7 +12,7 @@
     <artifactId>OrderManagement</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>EcomElectronics</name>
-    <description>Demo springboot micro services with an E-commerce setup</description>
+    <description>Demo springboot microservices with an E-commerce setup</description>
     <url/>
     <licenses>
         <license/>
