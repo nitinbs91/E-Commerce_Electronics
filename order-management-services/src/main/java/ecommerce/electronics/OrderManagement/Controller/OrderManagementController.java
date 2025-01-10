@@ -1,10 +1,12 @@
 package ecommerce.electronics.OrderManagement.Controller;
 
+import ecommerce.electronics.OrderManagement.Business.CallProductManagementServices;
 import ecommerce.electronics.OrderManagement.Business.DtoToDatabseMapper;
 import ecommerce.electronics.OrderManagement.Database.order_management;
 import ecommerce.electronics.OrderManagement.Service.DatabaseService;
 import ecommerce.electronics.OrderManagement.dto.AddOrder;
 import ecommerce.electronics.OrderManagement.dto.OrderManagementServiceResponse;
+import ecommerce.electronics.OrderManagement.dto.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,9 @@ public class OrderManagementController {
     @Autowired
     DtoToDatabseMapper dtoToDatabseMapper;
 
+    @Autowired
+    private CallProductManagementServices callProductManagementServices;
+
     @GetMapping("/FetchAllOrders")
     public List<order_management> FetchAllOrders()
     {
@@ -36,6 +41,7 @@ public class OrderManagementController {
     @PostMapping("/AddOrder")
     public ResponseEntity<OrderManagementServiceResponse> AddOrder(@RequestBody AddOrder addOrder)
     {
+        Optional<Product> product = callProductManagementServices.FetchProductByID(addOrder.getProductId());
         order_management order_management = dtoToDatabseMapper.MapOrderManagementDTOToDatabase(addOrder);
         order_management order_management1 = databaseService.InsertOrder(order_management);
         OrderManagementServiceResponse response = new OrderManagementServiceResponse();

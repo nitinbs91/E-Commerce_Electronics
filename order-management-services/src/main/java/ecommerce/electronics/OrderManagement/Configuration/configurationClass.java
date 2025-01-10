@@ -3,6 +3,7 @@ package ecommerce.electronics.OrderManagement.Configuration;
 import ecommerce.electronics.OrderManagement.dto.AddOrder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class configurationClass {
@@ -12,5 +13,11 @@ public class configurationClass {
     {
         AddOrder addOrder = new AddOrder();
         return addOrder;
+    }
+
+    @Bean
+    public RestTemplate restTemplatebean()
+    {
+        return new RestTemplate();
     }
 }
