@@ -2,6 +2,7 @@ package ecommerce.electronics.ProductManagement.DataBase;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -21,6 +22,10 @@ public interface ProductModelRepository extends JpaRepository<ProductModel, Long
     List<String> findProductNamesByCategory(@Param("category") Optional<Category> category);
     @Query("SELECT p.productName FROM ProductModel p WHERE p.subcategory = :subcategory")
     List<String> findProductNamesBySubcategory(@Param("subcategory") Optional<Subcategory> subcategory);
+    @Modifying
+    @Query("UPDATE ProductModel p SET p.stockQuantity = :stock WHERE p.productId = :productId")
+    int updateStockById(@Param("productId") Long productId, @Param("stock") Integer stock);
+
 
 
 }

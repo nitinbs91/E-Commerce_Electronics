@@ -74,6 +74,13 @@ public class EcomElectronicsApplicationController {
        ProductModel productModel= databaseService.AddProduct(productName, brandID, categoryID, subcategoryID, price, stockQuantity);
        return ResponseEntity.ok().header("status", "Success").body(productModel);
     }
+
+    @PostMapping("/UpdateProductStock")
+    public void UpdateProductStock(@RequestParam Long productID,@RequestParam Integer stock)
+    {
+        databaseService.UpdateProductStock(productID, stock);
+    }
+
     @PostMapping("/AddBrand")
     public ResponseEntity<Brand> AddNewBrand(@RequestBody AddBrand request)
     {

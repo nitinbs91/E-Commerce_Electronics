@@ -2,9 +2,9 @@ package ecommerce.electronics.OrderManagement.ExceptionHandling;
 
 public class DatabaseException extends RuntimeException{
 
-    public DatabaseException (String message, Throwable casue)
+    public DatabaseException (String message, Throwable cause)
     {
-        super(message, casue);
+        super(message, cause);
     }
 
     public DatabaseException (String message)

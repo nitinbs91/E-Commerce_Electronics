@@ -2,6 +2,7 @@ package ecommerce.electronics.ProductManagement.Service;
 
 import ecommerce.electronics.ProductManagement.DataBase.*;
 import ecommerce.electronics.ProductManagement.Exception.DatabaseException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -219,6 +220,20 @@ public class DatabaseService {
         try {
             return subcategoryRepository.save(subcategory);
         } catch (DataAccessException e) {
+            throw new DatabaseException(e.getMessage(), e);
+        }
+    }
+
+    //Update methods
+    @Transactional
+    public int UpdateProductStock(Long productId, Integer stock)
+    {
+        try
+        {
+            return productModelRepository.updateStockById(productId, stock);
+        }
+        catch (DatabaseException e)
+        {
             throw new DatabaseException(e.getMessage(), e);
         }
     }

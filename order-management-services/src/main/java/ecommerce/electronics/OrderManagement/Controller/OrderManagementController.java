@@ -41,7 +41,10 @@ public class OrderManagementController {
     @PostMapping("/AddOrder")
     public ResponseEntity<OrderManagementServiceResponse> AddOrder(@RequestBody AddOrder addOrder)
     {
-        Optional<Product> product = callProductManagementServices.FetchProductByID(addOrder.getProductId());
+        Product product = callProductManagementServices.FetchProductByID(addOrder.getProductId());
+        //Integer updatedstock = product.get().getQuantity() - addOrder.getQuantity() ;
+       // Long productID = product.get().getId();
+       // callProductManagementServices.updateProductStock(updatedstock,productID);
         order_management order_management = dtoToDatabseMapper.MapOrderManagementDTOToDatabase(addOrder);
         order_management order_management1 = databaseService.InsertOrder(order_management);
         OrderManagementServiceResponse response = new OrderManagementServiceResponse();

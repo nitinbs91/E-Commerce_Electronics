@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Optional;
@@ -19,21 +20,25 @@ public class CallProductManagementServices {
     @Value("${product.service.url}")
     private String ProductManagementURL;
 
-    public Optional<Product> FetchProductByID(Long ID)
+    public Product FetchProductByID(Long ID)
     {
-        String logURL = ProductManagementURL + "/fetch/product/" + ID;
-        System.out.println("-------------------------------------->"+logURL);
-        Optional<Product> product = Optional.ofNullable(restTemplate.getForObject(ProductManagementURL + "/fetch/product/" + ID, Product.class));
-        if(product.isPresent())
+       // String logURL = ProductManagementURL + "/fetch/product/" + ID;
+        //System.out.println("-------------------------------------->"+logURL);
+        try{
+//
+                Optional<Product> product = Optional.ofNullable(restTemplate.getForObject(ProductManagementURL + "/fetch/product/" + ID, Product.class));
+                return product.orElseThrow(() ->new DatabaseException("Product ID invalid"));
+           }
+        catch(RestClientException e)
         {
-           // System.out.println("Code to be added");
-            return product;
+            throw new RestClientException("External service error");
         }
-        else
-        {
-            throw new DatabaseException("Product not present in Database");
-        }
+//
 
+    }
 
+    public void updateProductStock(Integer quantity, Long productID)
+    {
+        restTemplate.getForObject(ProductManagementURL + "/UpdateProductStock/?productID=" + productID + "&" + "stock=" + quantity,void.class );
     }
 }

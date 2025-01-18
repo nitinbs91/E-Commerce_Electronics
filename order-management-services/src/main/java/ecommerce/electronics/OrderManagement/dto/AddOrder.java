@@ -7,7 +7,7 @@ public class AddOrder {
     private Integer quantity;
     private Long customerId;
 
-    // Getters and Setters
+    // Getters and Settersm
 
     public Long getProductId() {
         return productId;
