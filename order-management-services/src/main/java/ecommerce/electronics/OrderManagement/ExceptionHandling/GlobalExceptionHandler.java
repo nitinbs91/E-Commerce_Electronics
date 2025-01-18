@@ -15,4 +15,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(300).body(errorResponse);
     }
 
+    @ExceptionHandler(BusinessException.class)
+    public ResponseEntity<ErrorResponse> handleBusinessException(BusinessException ex)
+    {
+        System.out.println("-----> inside exception handler");
+        ErrorResponse errorResponse = new ErrorResponse("Business Exception", ex.getMessage());
+        errorResponse.setTimestamp(System.currentTimeMillis());
+        return ResponseEntity.status(300).body(errorResponse);
+    }
+
 }

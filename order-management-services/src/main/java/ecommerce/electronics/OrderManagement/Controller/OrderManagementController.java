@@ -3,6 +3,7 @@ package ecommerce.electronics.OrderManagement.Controller;
 import ecommerce.electronics.OrderManagement.Business.CallProductManagementServices;
 import ecommerce.electronics.OrderManagement.Business.DtoToDatabseMapper;
 import ecommerce.electronics.OrderManagement.Database.order_management;
+import ecommerce.electronics.OrderManagement.ExceptionHandling.BusinessException;
 import ecommerce.electronics.OrderManagement.Service.DatabaseService;
 import ecommerce.electronics.OrderManagement.dto.AddOrder;
 import ecommerce.electronics.OrderManagement.dto.OrderManagementServiceResponse;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RestController
@@ -42,9 +44,16 @@ public class OrderManagementController {
     public ResponseEntity<OrderManagementServiceResponse> AddOrder(@RequestBody AddOrder addOrder)
     {
         Product product = callProductManagementServices.FetchProductByID(addOrder.getProductId());
-        //Integer updatedstock = product.get().getQuantity() - addOrder.getQuantity() ;
-       // Long productID = product.get().getId();
-       // callProductManagementServices.updateProductStock(updatedstock,productID);
+        System.out.println("-->" + product.getProductId());
+        Long productID = product.getProductId();
+        Integer stockQuantity = product.getStockQuantity();
+        if(stockQuantity == 0)
+        {
+            throw new BusinessException("Out of Stock!!");
+        }
+        Integer OrderQuantity = addOrder.getQuantity();
+        Integer updatedStock = stockQuantity - OrderQuantity;
+        callProductManagementServices.updateProductStock(updatedStock, productID);
         order_management order_management = dtoToDatabseMapper.MapOrderManagementDTOToDatabase(addOrder);
         order_management order_management1 = databaseService.InsertOrder(order_management);
         OrderManagementServiceResponse response = new OrderManagementServiceResponse();

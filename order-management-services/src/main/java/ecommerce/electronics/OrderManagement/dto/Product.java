@@ -2,10 +2,10 @@ package ecommerce.electronics.OrderManagement.dto;
 
 public class Product {
 
-    private Long id;
-    private String name;
+    private Long productId;
+    private String productName;
     private Double price;
-    private Integer quantity;
+    private Integer stockQuantity;
     private Category category;
     private Subcategory subcategory;
     private Brand brand;
@@ -14,32 +14,32 @@ public class Product {
     public Product() {}
 
     // Parameterized constructor
-    public Product(Long id, String name, Double price, Integer quantity,
+    public Product(Long productId, String productName, Double price, Integer stockQuantity,
                    Category category, Subcategory subcategory, Brand brand) {
-        this.id = id;
-        this.name = name;
+        this.productId = productId;
+        this.productName = productName;
         this.price = price;
-        this.quantity = quantity;
+        this.stockQuantity = stockQuantity;
         this.category = category;
         this.subcategory = subcategory;
         this.brand = brand;
     }
 
     // Getters and Setters
-    public Long getId() {
-        return id;
+    public Long getProductId() {
+        return productId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
-    public String getName() {
-        return name;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public Double getPrice() {
@@ -50,12 +50,12 @@ public class Product {
         this.price = price;
     }
 
-    public Integer getQuantity() {
-        return quantity;
+    public Integer getStockQuantity() {
+        return stockQuantity;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setStockQuantity(Integer stockQuantity) {
+        this.stockQuantity = stockQuantity;
     }
 
     public Category getCategory() {

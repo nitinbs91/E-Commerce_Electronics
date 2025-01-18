@@ -37,8 +37,9 @@ public class CallProductManagementServices {
 
     }
 
-    public void updateProductStock(Integer quantity, Long productID)
+    public void updateProductStock(Integer stock, Long productID)
     {
-        restTemplate.getForObject(ProductManagementURL + "/UpdateProductStock/?productID=" + productID + "&" + "stock=" + quantity,void.class );
+        System.out.println("--****>" + ProductManagementURL + "/UpdateProductStock/?productID=" + productID + "&" + "stock=" + stock);
+        restTemplate.postForObject(ProductManagementURL + "/UpdateProductStock?productID=" + productID + "&" + "stock=" + stock,null, void.class );
     }
 }
